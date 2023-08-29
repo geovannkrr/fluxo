@@ -11,7 +11,7 @@ class CentroCustoController extends Controller
     public function index()
     {
         $centrocustos = CentroCusto::orderBy('centro_custo')->paginate(10);
-        return view('centro.index')->with(compact('$centrocustos'));
+        return view('centro.index')->with(compact('centrocustos'));
     }
 
 
