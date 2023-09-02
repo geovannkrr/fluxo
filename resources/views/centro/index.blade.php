@@ -1,6 +1,9 @@
 @extends('layouts.base')
 @section('content')
-    <h1>CENTRO CUSTO</h1>
+    <h1>CENTRO CUSTO
+        -
+        <a class="btn btn-primary" href="{{route('centro.create')}}"> novo centro de custo</a>
+    </h1>
 
     {{-- alerts --}}
     @include('layouts.partials.alerts')
@@ -24,16 +27,16 @@
                     <td scope="row" >
                         <div class="flex-column">
                             {{-- ver --}}
-                            <a class="btn btn-success" href="#">
+                            <a class="btn btn-success" href="{{ route('centro.show', ['id'=>$centro->id_centro_custos]) }}">
                                 <i class="bi bi-eye"></i>
                             </a>
                             {{-- editar --}}
-                            <a class="btn btn-dark" href="#">
+                            <a class="btn btn-dark" href="{{route('centro.edit',['id'=> $centro->id_centro_custos])}}">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
                             {{-- excluir --}}
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#modalExcluir" data-identificacao="" data-url="">
+                                data-bs-target="#modalExcluir" data-identificacao="{{$centro->centro_custo}}" data-url="{{route('centro.destroy',['id'=>$centro->id_centro_custos])}}">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>
