@@ -12,7 +12,7 @@ class CentroCusto extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'centro_custos';
-    protected $primaryKey = 'id_centro_custos';
+    protected $primaryKey = 'id_centro_custo';
     protected $date = [
         'created_at',
         'updated_at',
