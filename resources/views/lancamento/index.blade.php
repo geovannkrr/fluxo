@@ -7,19 +7,31 @@
     @include('layouts.partials.alerts')
     {{-- /alerts --}}
 
+    {!! $lancamentos->links() !!}
+
     <div class="table-responsive">
         <table class="table table-striped  table-hover ">
             <thead>
                 <caption>LISTA DE</caption>
                 <tr>
                     <th>#</th>
-                    <th>Column 2</th>
-                    <th>Column 3</th>
+                    <th>vencimento</th>
+                    <th>tipo</th>
+                    <th>valor</th>
+                    <th>centro de custo</th>
+                    <th>descricao</th>
+                    <th>usuario</th>
+                    <th>data do lancamento</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
+                @forelse ($lancamentos as $lancamento )
+
+
+
+
                 <tr>
-                    <td scope="row" class="col-1">
+                    <td scope="row" class="col-2">
                         <div class="flex-column">
                             {{-- ver --}}
                             <a class="btn btn-success" href="#">
@@ -36,9 +48,25 @@
                             </button>
                         </div>
                     </td>
-                    <td>Item</td>
-                    <td>Item</td>
+                    <td>{{$lancamento->vencimento->format('d/m/Y')}}</td>
+                    <td>{{$lancamento->tipo->tipo}}</td>
+                    <td>{{$lancamento->valor}}</td>
+                    <td>{{$lancamento->centroCusto->centro_custo}}</td>
+                    <td>{{$lancamento->descricao}}</td>
+                    <td>{{$lancamento->usuario->name}}</td>
+                    <td>{{$lancamento->created_at->format('d/m/Y \a\s H:i')}}
+                    {{-- / --}}
+                    {{-- {{$lancamento->created_at->age}} anos --}}
+                    </td>
                 </tr>
+                @empty
+                    <tr>
+                        <td colspan="8">
+                                nenhum registro retornado
+                        </td>
+
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
