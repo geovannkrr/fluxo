@@ -54,6 +54,14 @@
             value="{{$lancamento?$lancamento->valor : old('valor')}}"
             required>
         </div>
+
+        <div class="col-md-3">
+            <label for="anexo" class="form-label"> anexo
+
+            </label>
+            <input type="file" name="anexo" id="anexo" value="{{ old('anexo') }}">
+        </div>
+
         <div class="col-md-12">
             <label class="form-label" for="descricao">Descrição*</label>
             <input class="form-control"
@@ -63,7 +71,7 @@
         </div>
         <div class="col-md-2 offset-md-9">
             <input class="btn btn-primary" type="submit"
-        value="{{$lancamento?'atualizar':'cadastrar' :}}">
+        value="{{$lancamento?'atualizar':'cadastrar' }}">
         </div>
 
 
