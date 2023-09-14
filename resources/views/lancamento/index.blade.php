@@ -1,6 +1,11 @@
 @extends('layouts.base')
 @section('content')
-    <h1>INDEX - LANCAMENTOS </h1>
+    <h1>- LANCAMENTOS
+        |
+    <a class="btn btn-primary" href="{{route('lancamento.create')}}">
+        novo lancamento
+        </a>
+</h1>
     <h2> {{ Auth::user()->name }}</h2>
 
     {{-- alerts --}}
