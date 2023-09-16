@@ -10,9 +10,47 @@
 
     {{-- alerts --}}
     @include('layouts.partials.alerts')
-    {{-- /alerts --}}
+    {{-- /alerts 71161 --}}
 
-    {!! $lancamentos->links() !!}
+
+    {!! $lancamentos->appends([
+            'search'=> request()->get('search','')
+    ])->links() !!}
+
+    {{-- pesquisa --}}
+    <div class="row">
+        <form class="row" action="{{route('lancamento.index')}}" method="get">
+
+        <input class="form-control col-md-4" type="search" name="search" id="search" placeholder="Digite o que deseja pesquisar..." value="{{old('search', request()->get('search')) }}">
+        {{-- data inicial --}}
+            <div class="col-md-3">
+                <label class="form-label" for="dt_inicial">
+                    DT inicial
+                </label>
+                <input class="form-control" type="date" name="dt_inicial" id="dt_inicial">
+            </div>
+
+        {{-- /data inicial --}}
+         {{-- data final --}}
+        <div class="col-md-3">
+            <label class="form-label" for="dt_final">
+                DT final
+            </label>
+            <input class="form-control" type="date" name="dt_final" id="dt_final">
+        </div>
+
+        {{-- /data final --}}
+        <input class="btn btn-success col-md-1" type="submit" value="pesquisar">
+        @if (request()->get('search')!='')
+
+
+        <a class="btn btn-primary col-md-1" href="{{route('lancamento.index')}}">
+        Limpar
+        </a>
+        @endif
+    </form>
+    </div>
+    {{-- /pesquisa --}}
 
     <div class="table-responsive">
         <table class="table table-striped  table-hover ">
@@ -39,9 +77,13 @@
                     <td scope="row" class="col-2">
                         <div class="flex-column">
                             {{-- ver --}}
-                            <a class="btn btn-success" href="{{url('/storage/anexos/'.$lancamento->anexo)}}" target="_blank">
+                            @if ($lancamento->anexo)
+
+
+                            <a class="btn btn-success" href="{{Storage::url('/anexos/'.$lancamento->anexo)}}" target="_blank">
                                 <i class="bi bi-paperclip"></i>
                             </a>
+                            @endif
                             {{-- editar --}}
                             <a class="btn btn-dark" href="#">
                                 <i class="bi bi-pencil-square"></i>
